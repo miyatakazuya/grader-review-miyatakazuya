@@ -44,7 +44,7 @@ cp -r ../lib ../grading-area
 cd ../grading-area
 
 
-javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java
+javac -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar" *.java
 # Check if the student's code compiled
 if [ $? -ne 0 ]; then
     echo 'Student code did not compile'
@@ -52,7 +52,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the tests
-java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore TestListExamples > output.txt
+java -cp ".;lib/hamcrest-core-1.3.jar;lib/junit-4.13.2.jar;grading-area" org.junit.runner.JUnitCore TestListExamples > output.txt
 
 # Check if the tests passed in output.txt
 if ! grep -i -E "OK \([0-9]+\stests?\)" output.txt; then
